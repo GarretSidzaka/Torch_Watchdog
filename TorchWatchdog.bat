@@ -58,7 +58,6 @@ echo Restarting !file! >> "C:\autorestart.log"
 )
 
 
-del "%mypath%\runningProcesses.txt"
 echo Beginning timeout, followed by restarting script
 echo Beginning timeout, followed by restarting script >> "C:\autorestart.log"
 %SystemRoot%\system32\timeout /t 300 /NOBREAK
