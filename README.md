@@ -18,19 +18,19 @@ Modified torch watchdog to keep your Space engineer server alive
 
 ## Table of contents
 * [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
+* [Installation](#installation)
+* [Configuration](#configuration)
 
 ## General info
 This project is simple Lorem ipsum dolor generator.
 	
-## Technologies
+## Installation
 Project is created with:
 * Lorem version: 12.3
 * Ipsum version: 2.33
 * Ament library version: 999
 	
-## Setup
+## Configuration
 To run this project, install it locally using npm:
 
 ```
