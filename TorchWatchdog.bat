@@ -53,6 +53,6 @@ echo Restarting !file! >> "%path%\autorestart.log"
 
 
 del "%path%\runningProcesses.txt"
-echo Waiting for 5 minutes.... Use control-C to quit.
+echo Beginning timeout, followed by re-looping
 C:\windows\system32\timeout /t 300 /NOBREAK
 goto watchdogstart
