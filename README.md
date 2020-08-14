@@ -20,7 +20,7 @@ Modified torch watchdog to keep your Space engineer servers alive.
 
 4. Next type `shell:startup` and hit enter.
 
-5. Create a shortcut to `C:/Torch_Watchdog.bat` in this folder.  Right click drag does this fast.
+5. Create a shortcut to `C:/TorchWatchdog.bat` in this folder.  Right click drag does this fast.
 
 6. Double click on the shortcut when you want to manually start the watchdog.
 * Only works on Windows based servers
