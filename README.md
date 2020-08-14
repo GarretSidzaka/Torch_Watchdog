@@ -1,4 +1,4 @@
-![Logo](http://francky.me/images/quora001.png)
+![Logo](https://raw.githubusercontent.com/GarretSidzaka/Torch_Watchdog/master/torch_watchdog.png)
 
 # Torch_Watchdog
 
