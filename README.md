@@ -1,5 +1,4 @@
 # Torch_Watchdog
-Modified torch watchdog to keep your Space engineer server alive
 
 ##Installation Instructions:
 
@@ -20,21 +19,32 @@ Modified torch watchdog to keep your Space engineer server alive
 * [General info](#general-info)
 * [Installation](#installation)
 * [Configuration](#configuration)
+* [Contribute](#contribue)
+
 
 ## General info
-This project is simple Lorem ipsum dolor generator.
+Modified torch watchdog to keep your Space engineer servers alive.
 	
 ## Installation
-Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
-	
+Copy Torch_Watchdog.bat to your `C:/` directory.
+Create another folder at `C:/Torches`.  Copy all your server folders into this directory.   You cannot have any other directories in here besides Torch server folders.
+Press `WindowsKey + R` and bring up the run menu.  
+Next type `shell:startup` and hit enter.
+Create a shortcut to `C:/Torch_Watchdog.bat` in this folder.  Right click drag does this fast.
+Double click on the shortcut when you want to manually start the watchdog.
+* Only works on Windows based servers
+
 ## Configuration
-To run this project, install it locally using npm:
+If you want to have a different directory for your Torch servers, you can change it by editing this value:
 
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+:: set this to match the path that contains all of your torch folders
+
+set "mypath=C:\Torches"
 ```
+
+
+
+## Contribue
+
+If you see an error or needed changes, please make a push request :)
