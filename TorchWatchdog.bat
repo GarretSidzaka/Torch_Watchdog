@@ -53,6 +53,6 @@ echo Restarting !file! >> "%path%\autorestart.log"
 
 
 del "%path%\runningProcesses.txt"
-echo Beginning timeout, followed by re-looping
+echo Beginning timeout, followed by restarting script
 C:\windows\system32\timeout /t 300 /NOBREAK
 goto watchdogstart
