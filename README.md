@@ -1,19 +1,5 @@
 # Torch_Watchdog
 
-##Installation Instructions:
-
-
-##Configuration:
-
-
-##Usage:
-
-
-##Start on boot:
-
-
-##Contribute
-
 
 ## Table of contents
 * [General info](#general-info)
