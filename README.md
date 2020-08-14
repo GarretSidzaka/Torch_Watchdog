@@ -2,7 +2,7 @@
 
 # Torch_Watchdog
 
-!(https://raw.githubusercontent.com/GarretSidzaka/Torch_Watchdog/master/torch_watchdog_ex.png)
+https://raw.githubusercontent.com/GarretSidzaka/Torch_Watchdog/master/torch_watchdog_ex.png
 
 ## Table of contents
 * [General info](#general-info)
