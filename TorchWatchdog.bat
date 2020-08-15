@@ -1,10 +1,10 @@
-@echo off
+@echo on
 title Torch_Watchdog
 
 :watchdogstart
 
 echo Killing any torch processes with hung statuses....
-echo Killing any torch processes with hung statuses.... >> "C:\autorestart.log"
+
 
 %SystemRoot%\system32\taskkill /f /fi "imagename eq Torch.Server.exe" /fi "status ne running"
 %SystemRoot%\system32\taskkill /f /fi "imagename eq Torch.Server.exe" /fi "windowtitle eq Assertion Failed: Abort=Quit, Retry=Debug, Ignore=Continue"
@@ -12,7 +12,7 @@ echo Killing any torch processes with hung statuses.... >> "C:\autorestart.log"
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 echo Checking paths for executables
-echo Checking paths for executables >> "C:\autorestart.log"
+
 
 :: set this to match the path that contains all of your torch folders
 
@@ -39,15 +39,14 @@ for /f "delims=" %%F in ('dir /B /AD "%mypath%"') Do (
     if exist "!file!" (
 
 echo Found executable at "!file!"
-echo Found executable at "!file!" >> "C:\autorestart.log"
         %SYSTEMROOT%\System32\find /c "!file!" "C:\autorestart.log"
 
         IF ERRORLEVEL 1 (
 
 echo Restarting !file!
-echo Restarting !file! >> "C:\autorestart.log"
+
             echo %now% !file!
-            echo %now% !file! >> "C:\autorestart.log"
+
 
             start "" "!file!"
 
@@ -59,6 +58,6 @@ echo Restarting !file! >> "C:\autorestart.log"
 
 
 echo Beginning timeout, followed by restarting script
-echo Beginning timeout, followed by restarting script >> "C:\autorestart.log"
+
 %SystemRoot%\system32\timeout /t 300 /NOBREAK
 goto watchdogstart
