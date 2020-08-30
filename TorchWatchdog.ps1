@@ -19,7 +19,8 @@ while($true){
 
     # Get a list of non-responding processes, again
     $ps = get-process | ?  { $_.responding -eq $false }
-
+    Write-Host "Processes that continue to be problematic and should be stopped are $ps"
+    start-sleep -seconds 5:
     foreach($p in $ps) {
         # Check if process already is in the hash table
         if($ht.ContainsKey($p.id)) {
