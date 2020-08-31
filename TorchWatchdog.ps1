@@ -1,4 +1,4 @@
-Write-host Starting Watchdog...
+Write-host "Starting Watchdog..."
 	# Get a list of non-responding processes
 	$testps = Get-Process
     $testht = @{}
@@ -8,7 +8,7 @@ Write-host Starting Watchdog...
     }
     Write-Output @testht | Select-Object
     Write-Host " "
-    Read-Host -Prompt "Press Enter to continue"
+    Read-Host -Prompt "Press Enter to start loop."
 while($true){
 
     Write-Host "Checking for non-responding process."
