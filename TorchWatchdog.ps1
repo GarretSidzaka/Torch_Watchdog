@@ -45,7 +45,7 @@ $text = @"
 "@  
 Get-Funky $text
 Write-host " "
-Write-Host "Author: GarretSidzaka https://expanse.2enp.comparison"
+Write-Host "Author: GarretSidzaka https://expanse.2enp.com"
 Write-Host "Special Thanks: Princess Kenny and vonPryz (stack exchange)"
 Write-host "Starting Torch Watchdog..."
 Write-Host " "
