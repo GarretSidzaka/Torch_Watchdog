@@ -17,12 +17,22 @@ while($true){
     Write-Host " "
     $ps = get-process | ?  { $_.responding -eq $false }
     $ht = @{}
+
+    if ( $ps -eq $null ) {
+    Write-Host "Good news! No problematic processes found."
+    Write-Host "Beginning 30 second delay before checking again."
+    Write-Host " "
+    for ($i = 30; $i -gt 0; $i-- )
+    {
+    Write-Progress -Activity "Beginning 30 second delay before checking again, press control-C to cancel" -SecondsRemaining $i;
+    start-sleep -s 1
+       }
+    }
+    Else {
     Write-Host "Problematic processes are $ps"
     Write-Host " "
-    if ( $ps -eq $null ) {
-    Write-Host "...Good news! No problematic processes found."
-    Write-Host " "
-    }
+    
+
     # Store process info in a hash table.
     foreach($p in $ps) {
         $o = new-object psobject -Property @{ "name"=$p.name; "path"=$p.path; "status"=$p.responding; "time"=get-date; "pid"=$p.id }
@@ -33,18 +43,21 @@ while($true){
 
     Write-Host "Beginning 3 minute delay period to see if any processes stay in the degraded state."
     Write-Host " "
-for ($i = 180; $i -gt 0; $i-- )
-{
+    for ($i = 180; $i -gt 0; $i-- )
+    {
     Write-Progress -Activity "Waiting to recheck process for 3 minutes, press control-C to cancel" -SecondsRemaining $i;
     start-sleep -s 1
-}
+    }
 
     # Get a list of non-responding processes, again
     $ps = get-process | ?  { $_.responding -eq $false }
-    Write-Host "Processes that continue to be problematic and should be stopped are $ps"
-    Write-Host " "
+
     if ( $ps -eq $null ) {
-    Write-Host "...Good news! Still no problematic processes found."
+    Write-Host "Good news! There are no longer problematic processes to be found."
+    Write-Host " "
+    }
+    else {
+    Write-Host "Processes that continue to be problematic and should be stopped are $ps"
     Write-Host " "
     }
     start-sleep -s 2
@@ -70,6 +83,7 @@ for ($i = 180; $i -gt 0; $i-- )
                      start-sleep -s 1
                  }		
 				start-process $p.path
+                }
             }
         }
     }
