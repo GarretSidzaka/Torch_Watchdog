@@ -8,10 +8,11 @@ Write-host "Starting Watchdog..."
     }
     Write-Output @testht | Select-Object
     Write-Host " "
-    Read-Host -Prompt "Press Enter to start loop."
+    Read-Host -Prompt "Press Enter to start loop"
 while($true){
-
-    Write-Host "Checking for non-responding process."
+    Write-Host "Starting at top of loop"
+    Write-Host "Checking for non-responding processes."
+    start-sleep -s 2
     Write-Host " "
     $ps = get-process | ?  { $_.responding -eq $false }
     $ht = @{}
@@ -29,11 +30,11 @@ while($true){
 
     # sleep for a while
 
-    Write-Host "Beginning delay to see if process stays in degraded state."
+    Write-Host "Beginning 180 second delay period to see if any processes stay in the degraded state."
     Write-Host " "
-for ($i = 1; $i -le 5; $i++ )
+for ($i = 0; $i -le 180; $i++ )
 {
-    Write-Progress -Activity "Waiting to recheck process, press control-C to cancel" -PercentComplete $i;
+    Write-Progress -Activity "Waiting to recheck process for 180 seconds, press control-C to cancel" -SecondsRemaining $i;
     start-sleep -s 1
 }
 
@@ -45,7 +46,7 @@ for ($i = 1; $i -le 5; $i++ )
     Write-Host "...Good news! Still no problematic processes found."
     Write-Host " "
     }
-    start-sleep -s 5
+    start-sleep -s 2
     foreach($p in $ps) {
         # Check if process already is in the hash table
         if($ht.ContainsKey($p.id)) {
@@ -54,13 +55,18 @@ for ($i = 1; $i -le 5; $i++ )
             # If start time's older than 3 minutes, kill it
             if( ((get-date)-$ht[$p.id].Time).TotalMinutes -ge 3 ) {
                 # Actuall killing
-                Write-Host "Killing Process: $p.name"
-				Write-Host "Please type control-C to cancel killing process"
-				start-sleep -s 15
+                Write-Host "Killing Process: $p.path"
+                for ($i = -10; $i -le 0; $i++ )
+                 {
+                     Write-Progress -Activity "Please type control-C to cancel killing process and end script." -SecondsRemaining $i;
+                     start-sleep -s 1
+                 }
 				$p.kill()
-				Write-Host "Starting up $p.path"
-				Write-Host "Please type control-C to cancel server startup and end script."
-				start-sleep -s 15			
+                for ($i = -10; $i -le 0; $i++ )
+                 {
+                     Write-Progress -Activity "Starting up $p.path" -SecondsRemaining $i;
+                     start-sleep -s 1
+                 }		
 				start-process $p.path
             }
         }
