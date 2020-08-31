@@ -1,4 +1,5 @@
 Write-host "Starting Watchdog..."
+    start-sleep -s 1
 	# Get a list of non-responding processes
 	$testps = Get-Process
     $testht = @{}
@@ -6,7 +7,7 @@ Write-host "Starting Watchdog..."
         $o = new-object psobject -Property @{ "name"=$p.name; "path"=$p.path; "status"=$p.responding; "time"=get-date; "pid"=$p.id }
         $testht.Add($o.path, $o)
     }
-    Write-Output @testht | Select-Object
+    Write-Output @testht
     Write-Host " "
     Read-Host -Prompt "Press Enter to start loop"
 while($true){
