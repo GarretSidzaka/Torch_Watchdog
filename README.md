@@ -2,7 +2,7 @@
 
 # Torch_Watchdog
 
-![Example of program](https://raw.githubusercontent.com/GarretSidzaka/Torch_Watchdog/master/torch_watchdog2_ex.png)
+![Example of program](https://raw.githubusercontent.com/GarretSidzaka/Torch_Watchdog/master/torch_watchdog3_ex.png)
 
 ## Table of contents
 * [General info](#general-info)
