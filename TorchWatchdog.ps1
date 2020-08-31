@@ -30,11 +30,11 @@ while($true){
 
     # sleep for a while
 
-    Write-Host "Beginning 180 second delay period to see if any processes stay in the degraded state."
+    Write-Host "Beginning 3 minute delay period to see if any processes stay in the degraded state."
     Write-Host " "
-for ($i = 0; $i -le 180; $i++ )
+for ($i = 180; $i -gt 0; $i-- )
 {
-    Write-Progress -Activity "Waiting to recheck process for 180 seconds, press control-C to cancel" -SecondsRemaining $i;
+    Write-Progress -Activity "Waiting to recheck process for 3 minutes, press control-C to cancel" -SecondsRemaining $i;
     start-sleep -s 1
 }
 
@@ -56,13 +56,14 @@ for ($i = 0; $i -le 180; $i++ )
             if( ((get-date)-$ht[$p.id].Time).TotalMinutes -ge 3 ) {
                 # Actuall killing
                 Write-Host "Killing Process: $p.path"
-                for ($i = -10; $i -le 0; $i++ )
+                for ($i = 10; $i -gt 0; $i-- )
                  {
                      Write-Progress -Activity "Please type control-C to cancel killing process and end script." -SecondsRemaining $i;
                      start-sleep -s 1
                  }
 				$p.kill()
-                for ($i = -10; $i -le 0; $i++ )
+                Write-host "Starting up: $p.path"
+                for ($i = 10; $i -gt 0; $i-- )
                  {
                      Write-Progress -Activity "Starting up $p.path" -SecondsRemaining $i;
                      start-sleep -s 1
