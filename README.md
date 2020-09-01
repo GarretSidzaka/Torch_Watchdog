@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/GarretSidzaka/Torch_Watchdog/master/torch_watchdog.png)
 
-# Torch_Watchdog
+# TorchWatchdog
 
 ![Example of program](https://raw.githubusercontent.com/GarretSidzaka/Torch_Watchdog/master/torch_watchdog3_ex.png)
 
@@ -14,7 +14,7 @@
 Powershell script to keep your servers alive.
 	
 ## Installation
-1. Copy Torch_Watchdog.ps1 to your `C:/` directory.
+1. Copy TorchWatchdog.ps1 to your `C:/` directory.
 
 2. Create another folder at `C:/Torches`.  Copy all your server folders into this directory. 
 
