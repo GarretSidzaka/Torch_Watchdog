@@ -25,6 +25,7 @@ Powershell script to keep your servers alive.
 5. Create a shortcut to `C:/TorchWatchdog.ps1` in this folder.  Right click drag does this fast.
 
 6. Edit the shortcut target to C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\TorchWatchdog.ps1
+
 (ya all that stuff)
 
 7. Double click on the shortcut when you want to manually start the watchdog.
