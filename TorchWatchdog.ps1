@@ -1,4 +1,15 @@
-# Get a list of non-responding processes
+$Logfile = "C:\TorchWatchdog.log"
+
+Function LogWrite
+{
+   Param ([string]$logstring)
+   $Stamp = (Get-Date).toString("yyyy/MM/dd HH:mm:ss")
+   $logline = "$Stamp $logstring"
+   Add-content $Logfile -value $logline
+}
+
+
+
 function Get-Funky{
     param([string]$Text)
 
@@ -48,6 +59,7 @@ Write-host " "
 Write-Host "Author: GarretSidzaka https://expanse.2enp.com"
 Write-Host "Special Thanks: Princess Kenny and vonPryz (stack exchange)"
 Write-host "Starting Torch Watchdog..."
+LogWrite "Starting Torch Watchdog..."
 Write-Host " "
 start-sleep -s 2
 while($true){
@@ -70,13 +82,14 @@ while($true){
     }
     Else {
         Write-Host "Problematic processes are $ps"
+	LogWrite "Problematic processes are $ps"
         Write-Host " "
         # Store process info in a hash table.
         foreach($p in $ps) {
             #Write-host $p
             $o = new-object psobject -Property @{ "name"=$p.name; "path"=$p.path; "status"=$p.responding; "time"=get-date; "pid"=$p.id }
             $ht.Add($o.pid, $o)
-            #Write-host $o
+            LogWrite "$o"
         }
 	    
         # sleep for a while
@@ -119,7 +132,9 @@ while($true){
                     #Write-Host $cleanpath
                     Write-Host "Comparison matched process id"				
                     # Actual killing
-                    Write-host $p.path
+		    Write-host $p.path
+		    LogWrite "Killing $p.path $p.id"
+		    Write-host "Killing $p.path $p.id"
                     #Write-host $ps
                     Write-Host "Cancel with control-C, otherwise I'm killing Process: $ps"
                     Start-Sleep -Seconds 5
@@ -128,7 +143,7 @@ while($true){
                     Write-host "Cancel with control-C, otherwise I'm starting up: $ps"
                     Start-Sleep -Seconds 5
                     Write-Host " "
-	        		start-process $cleanpath
+	            start-process $cleanpath
                     #Read-Host -Prompt "Press Enter to continue"
                 }
             }
