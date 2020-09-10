@@ -134,14 +134,15 @@ while($true){
                     Write-Host "Comparison matched process id"				
                     # Actual killing
 		    Write-host $p.path
-		    LogWrite "Killing $p.path $p.id"
-		    Write-host "Killing $p.path $p.id"
+            $killtarget = $p.path
+		    LogWrite "Killing $killtarget"
+		    Write-host "Killing $killtarget"
                     #Write-host $ps
-                    Write-Host "Cancel with control-C, otherwise I'm killing Process: $ps"
+                    Write-Host "Cancel with control-C, otherwise I'm killing Process: $killtarget"
                     Start-Sleep -Seconds 5
                     Write-Host " "
 	        		$p.kill()
-                    Write-host "Cancel with control-C, otherwise I'm starting up: $ps"
+                    Write-host "Cancel with control-C, otherwise I'm starting up: $killtarget"
                     Start-Sleep -Seconds 5
                     Write-Host " "
 	            start-process $cleanpath
