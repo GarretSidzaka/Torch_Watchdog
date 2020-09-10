@@ -65,11 +65,12 @@ start-sleep -s 2
 while($true){
     Write-Host "Starting at top of loop"
     Write-Host "Checking for non-responding processes."
-    start-sleep -s 2
     Write-Host " "
     $ps = get-process | ?  { $_.responding -eq $false }
     $ht = @{}
-
+    Write-Host $ps
+    Write-Host $ps.Name
+    start-sleep -s 2
     if ( $ps -eq $null ) {
         Write-Host "Good news! No problematic processes found."
         Write-Host "Beginning 30 second delay before checking again."
@@ -80,9 +81,9 @@ while($true){
         }
     Write-Host " "
     }
-    Else {
+    ElseIf ( $ps.name -eq "Torch.Server" ) {	
         Write-Host "Problematic processes are $ps"
-	LogWrite "Problematic processes are $ps"
+	    LogWrite "Problematic processes are $ps"
         Write-Host " "
         # Store process info in a hash table.
         foreach($p in $ps) {
@@ -90,7 +91,7 @@ while($true){
             $o = new-object psobject -Property @{ "name"=$p.name; "path"=$p.path; "status"=$p.responding; "time"=get-date; "pid"=$p.id }
             $ht.Add($o.pid, $o)
             LogWrite "$o"
-        }
+        
 	    
         # sleep for a while
 	    
@@ -145,6 +146,7 @@ while($true){
                     Write-Host " "
 	            start-process $cleanpath
                     #Read-Host -Prompt "Press Enter to continue"
+					}
                 }
             }
         }
