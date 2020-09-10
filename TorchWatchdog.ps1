@@ -65,11 +65,12 @@ start-sleep -s 2
 while($true){
     Write-Host "Starting at top of loop"
     Write-Host "Checking for non-responding processes."
-    start-sleep -s 2
     Write-Host " "
     $ps = get-process | ?  { $_.responding -eq $false }
     $ht = @{}
-
+    Write-Host $ps
+    Write-Host $ps.Name
+    start-sleep -s 2
     if ( $ps -eq $null ) {
         Write-Host "Good news! No problematic processes found."
         Write-Host "Beginning 30 second delay before checking again."
@@ -80,9 +81,9 @@ while($true){
         }
     Write-Host " "
     }
-    Else {
+    ElseIf ( $ps.name -eq "Torch.Server" ) {	
         Write-Host "Problematic processes are $ps"
-	LogWrite "Problematic processes are $ps"
+	    LogWrite "Problematic processes are $ps"
         Write-Host " "
         # Store process info in a hash table.
         foreach($p in $ps) {
@@ -90,7 +91,7 @@ while($true){
             $o = new-object psobject -Property @{ "name"=$p.name; "path"=$p.path; "status"=$p.responding; "time"=get-date; "pid"=$p.id }
             $ht.Add($o.pid, $o)
             LogWrite "$o"
-        }
+        
 	    
         # sleep for a while
 	    
@@ -133,18 +134,20 @@ while($true){
                     Write-Host "Comparison matched process id"				
                     # Actual killing
 		    Write-host $p.path
-		    LogWrite "Killing $p.path $p.id"
-		    Write-host "Killing $p.path $p.id"
+            $killtarget = $p.path
+		    LogWrite "Killing $killtarget"
+		    Write-host "Killing $killtarget"
                     #Write-host $ps
-                    Write-Host "Cancel with control-C, otherwise I'm killing Process: $ps"
+                    Write-Host "Cancel with control-C, otherwise I'm killing Process: $killtarget"
                     Start-Sleep -Seconds 5
                     Write-Host " "
 	        		$p.kill()
-                    Write-host "Cancel with control-C, otherwise I'm starting up: $ps"
+                    Write-host "Cancel with control-C, otherwise I'm starting up: $killtarget"
                     Start-Sleep -Seconds 5
                     Write-Host " "
 	            start-process $cleanpath
                     #Read-Host -Prompt "Press Enter to continue"
+					}
                 }
             }
         }
