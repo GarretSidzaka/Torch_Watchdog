@@ -28,7 +28,11 @@ Powershell script to keep your servers alive.
 
 (ya all that stuff)
 
-7. Double click on the shortcut when you want to manually start the watchdog.
+7. Uncheck/Disable these settings in the shortcut as well
+
+(https://i.stack.imgur.com/k8EVM.jpg)
+
+8. Double click on the shortcut when you want to manually start the watchdog.
 * Only works on Windows based servers
 
 
